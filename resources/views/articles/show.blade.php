@@ -15,5 +15,5 @@
 @endforeach
 
 <div>
-    <a href="/articles">Back to articles overview</a>
+    <a href="{{route('articles.index')}}">Back to articles overview</a>
 </div>
