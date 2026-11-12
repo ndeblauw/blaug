@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
  * Public Website routes
  */
 Route::get('/', WelcomeController::class)->name('welcome');
+Route::get('articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
 
 // Todo: add your public routes here
 
