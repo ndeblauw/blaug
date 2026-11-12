@@ -1,4 +1,4 @@
-<x-site-layout>
+<x-site-layout title="">
 
 This is our temporary welcome page
 

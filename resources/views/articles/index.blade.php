@@ -1,4 +1,4 @@
-<x-site-layout>
+<x-site-layout title="Articles overview">
 
 <h1>Overview of the articles</h1>
 
