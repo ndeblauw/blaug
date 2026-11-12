@@ -1,10 +1,4 @@
-<div>
-    Logo  +
-    <a href="{{route('articles.index')}}">Articles</a> +
-    Contact +
-    Login +
-    <hr/>
-</div>
+<x-site-layout>
 
 <h1>Overview of the articles</h1>
 
@@ -17,7 +11,4 @@
     </div>
 @endforeach
 
-<div>
-    <hr/>
-    This is my footer
-</div>
+</x-site-layout>
