@@ -1,3 +1,11 @@
+<div>
+    Logo  +
+    <a href="{{route('articles.index')}}">Articles</a> +
+    Contact +
+    Login +
+    <hr/>
+</div>
+
 
 <h1>{{$article->title}}</h1>
 
@@ -16,4 +24,9 @@
 
 <div>
     <a href="{{route('articles.index')}}">Back to articles overview</a>
+</div>
+
+<div>
+    <hr/>
+    This is my footer
 </div>
