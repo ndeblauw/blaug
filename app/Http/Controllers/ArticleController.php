@@ -12,4 +12,12 @@ class ArticleController extends Controller
 
         return view('articles.index', compact('articles'));
     }
+
+    public function show(int $id)
+    {
+        $article = \App\Models\Article::find($id);
+
+        return view('articles.show', compact('article'));
+
+    }
 }
