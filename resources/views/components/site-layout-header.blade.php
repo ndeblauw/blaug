@@ -1,7 +1,9 @@
-<div style="background-color: magenta;">
-    Logo  +
-    <a href="{{route('articles.index')}}">Articles</a> +
-    Contact +
-    Login +
+<div style="background-color: lightblue;">
+    Logo
+
+    @foreach($menu as $label => $link)
+        <a href="{{$link}}">{{$label}}</a>
+    @endforeach
+
     <hr/>
 </div>
