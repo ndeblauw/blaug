@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,6 +22,8 @@ class DatabaseSeeder extends Seeder
 
         Article::factory(20)->create();
         Comment::factory(40)->create();
+
+        Category::factory(5)->create();
 
         User::factory()->create([
             'name' => 'Test User',
