@@ -8,7 +8,7 @@
     <h1 class="mt-2 text-4xl font-semibold tracking-tight text-slate-900">{{ $article->title }}</h1>
 
     <p class="mt-4 text-sm text-slate-500">
-        By <span class="font-medium text-blue-700">{{ $article->author }}</span>
+        By <span class="font-medium text-blue-700">{{ $article->author->name }}</span>
         &middot;
         {{ \Illuminate\Support\Carbon::parse($article->publish_date)->format('M j, Y') }}
     </p>
