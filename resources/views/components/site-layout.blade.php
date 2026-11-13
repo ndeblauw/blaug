@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>
         @if($title)
@@ -14,19 +14,15 @@
 
     @fonts
 
-    <!-- Styles / Scripts
-    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @else
-    @endif
-    -->
+    <!-- Styles / Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="">
+<body class="bg-blue-50 font-sans text-slate-800 antialiased">
 
-<div>
+<div class="mx-auto flex min-h-screen max-w-6xl flex-col bg-white shadow-sm">
     <x-site-layout-header />
 
-    <main>
+    <main class="flex-1 px-10 py-10">
         {{$slot}}
     </main>
 
