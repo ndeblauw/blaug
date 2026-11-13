@@ -24,22 +24,13 @@
 <body class="">
 
 <div>
-    <div style="background-color: lightblue;">
-        Logo  +
-        <a href="{{route('articles.index')}}">Articles</a> +
-        Contact +
-        Login +
-        <hr/>
-    </div>
+    <x-site-layout-header />
 
     <main>
         {{$slot}}
     </main>
 
-    <div>
-        <hr/>
-        This is my footer
-    </div>
+    <x-site-layout-footer/>
 </div>
 
 </body>
