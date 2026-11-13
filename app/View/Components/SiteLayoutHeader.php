@@ -17,6 +17,7 @@ class SiteLayoutHeader extends Component
     {
         $this->menu = [
             'articles' => route('articles.index'),
+            'authors' => route('authors.index'),
             'contact' => '',
             'login' => route('login'),
         ];
