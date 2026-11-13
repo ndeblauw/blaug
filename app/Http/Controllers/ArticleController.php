@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = \App\Models\Article::all();
+        $articles = Article::all();
 
         return view('articles.index', compact('articles'));
     }
 
     public function show(int $id)
     {
-        $article = \App\Models\Article::find($id);
+        $article = Article::find($id);
 
         return view('articles.show', compact('article'));
 
