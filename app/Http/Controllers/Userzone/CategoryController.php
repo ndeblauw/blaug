@@ -15,4 +15,23 @@ class CategoryController extends Controller
 
         return view('userzone.categories.index', compact('categories'));
     }
+
+    public function create()
+    {
+        return view('userzone.categories.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('userzone.categories.index');
+    }
+
 }
