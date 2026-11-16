@@ -12,13 +12,8 @@
 
                     <form action="{{route('userzone.categories.update', $category->id)}}" method="post">
 
-                        @csrf
-
-                        <div>
-                            <label class="font-semibold text-xs" for="name">Category</label><br/>
-                            <input type="text" name="name" class="border @error('name') border-red-500 @else border-black @endif" placeholder="Your category name" value="{{old('name',$category->name)}}" required>
-                            @error('name') <div class="text-red-500"> {{$message}} </div> @enderror
-                        </div>
+                        @csrf   
+                        <x-form-textinput name="name" label="Name" placeholder="Your category name" value="{{$category->name}}"/>
 
                         <hr class="my-4"/>
 

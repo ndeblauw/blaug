@@ -13,13 +13,8 @@
                     <form action="{{route('userzone.categories.store')}}" method="post">
 
                         @csrf
+                        <x-form-textinput name="name" label="Name" placeholder="Your category name"/>
 
-                        <div>
-                            <label class="font-semibold text-xs" for="name">Category</label><br/>
-                            <input type="text" name="name" class="border @error('name') border-red-500 @else border-black @endif" placeholder="Your category name" value="{{old('name')}}" required>
-                            @error('name') <div class="text-red-500"> {{$message}} </div> @enderror
-                        </div>
-                        
                         <hr class="my-4"/>
 
                         <button type="submit" class="p-2 bg-blue-500 text-white">Add category</button>
