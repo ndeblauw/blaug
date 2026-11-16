@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     // Todo: add your Userzone routes here
+    Route::get('/user/categories', [\App\Http\Controllers\Userzone\CategoryController::class, 'index'])->name('userzone.categories.index');
 
     // For the user's profile management
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
