@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Userzone\DashboardController;
 use App\Http\Controllers\Userzone\ProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -15,6 +16,8 @@ Route::get('articles', [ArticleController::class, 'index'])->name('articles.inde
 Route::get('articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('authors', [AuthorController::class, 'index'])->name('authors.index');
 Route::get('authors/{id}', [AuthorController::class, 'show'])->name('authors.show');
+Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
 
 // Todo: add your public routes here
 

@@ -7,6 +7,12 @@
 
     <h1 class="mt-2 text-4xl font-semibold tracking-tight text-slate-900">{{ $article->title }}</h1>
 
+    <div>
+        @foreach($article->categories as $category)
+            <span class="bg-gray-200 px-4 py-0.5 rounded-full">{{$category->name}}</span>
+        @endforeach
+    </div>
+
     <p class="mt-4 text-sm text-slate-500">
         By <span class="font-medium text-blue-700">{{ $article->author->name }}</span>
         &middot;
