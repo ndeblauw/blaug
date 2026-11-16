@@ -27,7 +27,7 @@
                 <p class="mt-1 text-xs uppercase tracking-wider text-blue-600">
                     {{ \Illuminate\Support\Carbon::parse($article->publish_date)->format('M j, Y') }}
                     &middot;
-                    {{ $article->comments_count }} {{ Str::plural('comment', $article->comments_count) }}
+                    {{ $article->comments->count() }} {{ Str::plural('comment', $article->comments->count()) }}
                 </p>
 
                 <p class="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">
