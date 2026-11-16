@@ -20,10 +20,14 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
 
-        Article::factory(20)->create();
+        $articles = Article::factory(20)->create();
         Comment::factory(40)->create();
 
         Category::factory(5)->create();
+        foreach ($articles as $article) {
+            $subset = Category::inRandomOrder()->take(rand(0, 5))->pluck('id')->toArray();
+            $article->categories()->attach($subset);
+        }
 
         User::factory()->create([
             'name' => 'Test User',
