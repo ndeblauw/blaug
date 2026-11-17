@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user/categories/{id}/edit', [\App\Http\Controllers\Userzone\CategoryController::class, 'edit'])->name('userzone.categories.edit');
     Route::put('/user/categories/{id}', [\App\Http\Controllers\Userzone\CategoryController::class, 'update'])->name('userzone.categories.update');
+    Route::delete('user/categories/{id}', [\App\Http\Controllers\Userzone\CategoryController::class, 'destroy'])->name('userzone.categories.delete');
 
 
     // For the user's profile management
