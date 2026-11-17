@@ -33,7 +33,7 @@
 
                                         <a href="{{ route('userzone.categories.edit', $category->id) }}" class="text-gray-800 hover:text-gray-600">Edit</a>
 
-                                        <form action="{{ route('userzone.categories.delete', $category->id) }}" method="post">
+                                        <form action="{{ route('userzone.categories.destroy', $category->id) }}" method="post">
                                             @method('delete')
                                             @csrf
                                             <button type="submit" class="text-red-600 hover:text-red-500">Delete</button>
