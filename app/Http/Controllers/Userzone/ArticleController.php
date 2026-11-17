@@ -14,6 +14,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::query()
+            ->where('author_id', auth()->user()->id)
             ->with(['author', 'categories'])
             ->orderByDesc('publish_date')
             ->get();
@@ -51,6 +52,10 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
+        if($article->author_id != auth()->user()->id){
+            abort(403);
+        }
+
         return view('userzone.articles.edit', [
             'article' => $article,
             'authors' => $this->authorOptions(),
@@ -71,6 +76,11 @@ class ArticleController extends Controller
 
         $article = Article::findOrFail($id);
 
+        if($article->author_id != auth()->user()->id){
+            abort(403);
+        }
+
+
         $article->update(Arr::except($validated, 'categories'));
 
         $article->categories()->sync($validated['categories'] ?? []);
@@ -82,6 +92,10 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
+        if($article->author_id != auth()->user()->id){
+            abort(403);
+        }
+        
         $article->categories()->detach();
         $article->delete();
 
