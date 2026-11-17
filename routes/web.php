@@ -12,12 +12,9 @@ use Illuminate\Support\Facades\Route;
  * Public Website routes
  */
 Route::get('/', WelcomeController::class)->name('welcome');
-Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
-Route::get('authors', [AuthorController::class, 'index'])->name('authors.index');
-Route::get('authors/{id}', [AuthorController::class, 'show'])->name('authors.show');
-Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
+Route::resource('articles', ArticleController::class)->only(['index', 'show']);
+Route::resource('authors', AuthorController::class)->only(['index', 'show']);
+Route::resource('categories', CategoryController::class)->only(['index', 'show']);
 
 // Todo: add your public routes here
 
@@ -34,13 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     // Todo: add your Userzone routes here
-    Route::get('/user/categories', [\App\Http\Controllers\Userzone\CategoryController::class, 'index'])->name('userzone.categories.index');
-    Route::get('/user/categories/create', [\App\Http\Controllers\Userzone\CategoryController::class, 'create'])->name('userzone.categories.create');
-    Route::post('/user/categories', [\App\Http\Controllers\Userzone\CategoryController::class, 'store'])->name('userzone.categories.store');
+    Route::prefix('user')->name('userzone.')->group( function() {
+        Route::resource('categories', \App\Http\Controllers\Userzone\CategoryController::class)->except('show');
+    });
 
-    Route::get('/user/categories/{id}/edit', [\App\Http\Controllers\Userzone\CategoryController::class, 'edit'])->name('userzone.categories.edit');
-    Route::put('/user/categories/{id}', [\App\Http\Controllers\Userzone\CategoryController::class, 'update'])->name('userzone.categories.update');
-    Route::delete('user/categories/{id}', [\App\Http\Controllers\Userzone\CategoryController::class, 'destroy'])->name('userzone.categories.delete');
 
 
     // For the user's profile management
