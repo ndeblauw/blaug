@@ -11,8 +11,8 @@
                 <div class="p-6 text-gray-900">
 
                     <form action="{{route('userzone.categories.update', $category->id)}}" method="post">
-
-                        @csrf   
+                        @method('PUT')
+                        @csrf
                         <x-form-textinput name="name" label="Name" placeholder="Your category name" value="{{$category->name}}"/>
 
                         <hr class="my-4"/>

@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/categories', [\App\Http\Controllers\Userzone\CategoryController::class, 'store'])->name('userzone.categories.store');
 
     Route::get('/user/categories/{id}/edit', [\App\Http\Controllers\Userzone\CategoryController::class, 'edit'])->name('userzone.categories.edit');
-    Route::post('/user/categories/{id}', [\App\Http\Controllers\Userzone\CategoryController::class, 'update'])->name('userzone.categories.update');
+    Route::put('/user/categories/{id}', [\App\Http\Controllers\Userzone\CategoryController::class, 'update'])->name('userzone.categories.update');
 
 
     // For the user's profile management
