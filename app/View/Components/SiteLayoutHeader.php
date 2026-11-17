@@ -20,7 +20,6 @@ class SiteLayoutHeader extends Component
             'authors' => route('authors.index'),
             'categories' => route('categories.index'),
             'contact' => '',
-            'login' => route('login'),
         ];
     }
 
