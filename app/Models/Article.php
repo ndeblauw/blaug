@@ -11,6 +11,15 @@ class Article extends Model
     /** @use HasFactory<ArticleFactory> */
     use HasFactory;
 
+    protected $guarded = [];
+
+    protected function casts(): array
+    {
+        return [
+            'publish_date' => 'datetime',
+        ];
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);

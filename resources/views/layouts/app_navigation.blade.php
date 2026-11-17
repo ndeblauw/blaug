@@ -18,6 +18,9 @@ Dashboard
                     <x-breeze.nav-link :href="route('userzone.categories.index')" :active="request()->routeIs('userzone.categories.index')">
                         Categories
                     </x-breeze.nav-link>
+                    <x-breeze.nav-link :href="route('userzone.articles.index')" :active="request()->routeIs('userzone.articles.*')">
+                        Articles
+                    </x-breeze.nav-link>
                 </div>
             </div>
 
@@ -72,6 +75,12 @@ Log Out
         <div class="pt-2 pb-3 space-y-1">
             <x-breeze.responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 Dashboard
+            </x-breeze.responsive-nav-link>
+            <x-breeze.responsive-nav-link :href="route('userzone.categories.index')" :active="request()->routeIs('userzone.categories.index')">
+                Categories
+            </x-breeze.responsive-nav-link>
+            <x-breeze.responsive-nav-link :href="route('userzone.articles.index')" :active="request()->routeIs('userzone.articles.*')">
+                Articles
             </x-breeze.responsive-nav-link>
         </div>
 

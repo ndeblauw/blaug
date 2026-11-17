@@ -31,11 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     // Todo: add your Userzone routes here
-    Route::prefix('user')->name('userzone.')->group( function() {
-        Route::resource('categories', \App\Http\Controllers\Userzone\CategoryController::class)->except('show');
+    Route::prefix('user')->name('userzone.')->group(function () {
+        Route::resource('categories', App\Http\Controllers\Userzone\CategoryController::class)->except('show');
+        Route::resource('articles', App\Http\Controllers\Userzone\ArticleController::class)->except('show');
     });
-
-
 
     // For the user's profile management
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
