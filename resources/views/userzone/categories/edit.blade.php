@@ -13,7 +13,7 @@
                     <form action="{{route('userzone.categories.update', $category->id)}}" method="post">
                         @method('PUT')
                         @csrf
-                        <x-form-textinput name="name" label="Name" placeholder="Your category name" value="{{$category->name}}"/>
+                        <x-form-textinput name="name" label="Name" placeholder="Your category name" value="{{$category->name}}" required/>
 
                         <hr class="my-4"/>
 

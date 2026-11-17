@@ -13,7 +13,7 @@
                     <form action="{{route('userzone.categories.store')}}" method="post">
 
                         @csrf
-                        <x-form-textinput name="name" label="Name" placeholder="Your category name"/>
+                        <x-form-textinput name="name" label="Name" placeholder="Your category name" required/>
 
                         <hr class="my-4"/>
 
