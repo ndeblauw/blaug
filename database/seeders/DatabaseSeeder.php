@@ -18,6 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->admin()->create([
+            'name' => 'Admin',
+            'email' => 'nico@deblauwe.be',
+        ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
         User::factory(10)->create();
 
         $articles = Article::factory(20)->create();
@@ -29,9 +37,5 @@ class DatabaseSeeder extends Seeder
             $article->categories()->attach($subset);
         }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
     }
 }

@@ -5,6 +5,13 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        @production
+        @else
+            <div class="bg-pink-200 p-1">
+                test@example.com + password OR nico@deblauwe.be + password
+            </div>
+        @endproduction
+
         <!-- Email Address -->
         <div>
             <x-breeze.input-label for="email" value="Email" />
