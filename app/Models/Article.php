@@ -34,4 +34,18 @@ class Article extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function canManage($user): bool
+    {
+        if($user->is_admin) {
+            return true;
+        }
+
+        if ($this->author_id == $user->id) {
+            return true;
+        }
+
+        return false;
+    }
+
 }

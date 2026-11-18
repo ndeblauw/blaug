@@ -13,11 +13,18 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::query()
-            ->where('author_id', auth()->user()->id)
-            ->with(['author', 'categories'])
-            ->orderByDesc('publish_date')
-            ->get();
+        if(auth()->user()->is_admin) {
+            $articles = Article::query()
+                ->with(['author', 'categories'])
+                ->orderByDesc('publish_date')
+                ->get();
+        } else {
+            $articles = Article::query()
+                ->where('author_id', auth()->user()->id)
+                ->with(['author', 'categories'])
+                ->orderByDesc('publish_date')
+                ->get();
+        }
 
         return view('userzone.articles.index', compact('articles'));
     }
@@ -52,9 +59,7 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        if($article->author_id != auth()->user()->id){
-            abort(403);
-        }
+        abort_unless($article->canManage(auth()->user()), 403);
 
         return view('userzone.articles.edit', [
             'article' => $article,
@@ -76,10 +81,7 @@ class ArticleController extends Controller
 
         $article = Article::findOrFail($id);
 
-        if($article->author_id != auth()->user()->id){
-            abort(403);
-        }
-
+        abort_unless($article->canManage(auth()->user()), 403);
 
         $article->update(Arr::except($validated, 'categories'));
 
@@ -92,10 +94,8 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        if($article->author_id != auth()->user()->id){
-            abort(403);
-        }
-        
+        abort_unless($article->canManage(auth()->user()), 403);
+
         $article->categories()->detach();
         $article->delete();
 
@@ -131,4 +131,5 @@ class ArticleController extends Controller
             ])
             ->all();
     }
+
 }
