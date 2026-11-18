@@ -46,11 +46,15 @@ class ArticleController extends Controller
             'publish_date' => ['required', 'date'],
             'categories' => ['nullable', 'array'],
             'categories.*' => ['exists:categories,id'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:8192'],
         ]);
 
-        $article = Article::create(Arr::except($validated, 'categories'));
+        $article = Article::create(Arr::except($validated, ['categories','image']));
 
         $article->categories()->sync($validated['categories'] ?? []);
+
+        $path = $request->file('image')?->store('images', 'public');
+        $article->update(['image_path' => $path]);
 
         return redirect()->route('userzone.articles.index');
     }
@@ -77,15 +81,21 @@ class ArticleController extends Controller
             'publish_date' => ['required', 'date'],
             'categories' => ['nullable', 'array'],
             'categories.*' => ['exists:categories,id'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:8192'],
         ]);
 
         $article = Article::findOrFail($id);
 
         abort_unless($article->canManage(auth()->user()), 403);
 
-        $article->update(Arr::except($validated, 'categories'));
+        $article->update(Arr::except($validated, ['categories','image']));
 
         $article->categories()->sync($validated['categories'] ?? []);
+
+        if($request->has('image')) {
+            $path = $request->file('image')?->store('images', 'public');
+            $article->update(['image_path' => $path]);
+        }
 
         return redirect()->route('userzone.articles.index');
     }

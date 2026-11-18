@@ -24,6 +24,9 @@
                             <x-form-datetimeinput name="publish_date" label="Publish date" required/>
 
                             <x-form-multiselect name="categories" label="Categories" :options="$categories"/>
+
+                            Image for article:<br/>
+                            <input name="image" type="file">
                         </div>
 
                         <hr class="my-4"/>

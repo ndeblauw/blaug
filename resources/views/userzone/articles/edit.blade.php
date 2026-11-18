@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-xs sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <form action="{{ route('userzone.articles.update', $article->id) }}" method="post">
+                    <form action="{{ route('userzone.articles.update', $article->id) }}" method="post" enctype="multipart/form-data">
 
                         @method('PUT')
                         @csrf
@@ -25,6 +25,9 @@
                             <x-form-datetimeinput name="publish_date" label="Publish date" :value="$article->publish_date" required/>
 
                             <x-form-multiselect name="categories" label="Categories" :options="$categories" :value="$article->categories->pluck('id')->all()"/>
+
+                            Image for article:<br/>
+                            <input name="image" type="file">
                         </div>
 
                         <hr class="my-4"/>

@@ -48,4 +48,13 @@ class Article extends Model
         return false;
     }
 
+    public function getImagePath()
+    {
+        if($this->image_path !== null) {
+            return "/storage/$this->image_path";
+        } else {
+            return "/img/default-article.png";
+        }
+    }
+
 }

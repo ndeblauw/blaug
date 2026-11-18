@@ -9,6 +9,9 @@
 <div class="mt-10 max-w-4xl divide-y divide-blue-100 border-t border-blue-100">
     @foreach($articles as $article)
         <article class="flex justify-between gap-10 py-7">
+            <div class="w-12">
+                <img src="{{$article->getImagePath() }}" class="w-12"/>
+            </div>
             <div>
                 <h2 class="text-lg font-semibold text-slate-900">
                     <a href="{{ route('articles.show', $article) }}" class="hover:text-blue-700">{{ $article->title }}</a>

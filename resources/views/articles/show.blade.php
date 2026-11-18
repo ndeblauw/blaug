@@ -19,6 +19,8 @@
         {{ \Illuminate\Support\Carbon::parse($article->publish_date)->format('M j, Y') }}
     </p>
 
+    <img src="{{$article->getImagePath() }}" />
+
     <div class="mt-8 whitespace-pre-line border-t border-blue-100 pt-8 text-[15px] leading-7 text-slate-700">
         {{ $article->content }}
     </div>

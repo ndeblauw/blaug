@@ -15,6 +15,8 @@ return new class extends Migration
             $table->text('content');
             $table->foreignId('author_id');
             $table->dateTime('publish_date');
+            $table->string('image_path')->nullable();
+            $table->string('image_original_name')->nullable();
 
             $table->timestamps();
         });
