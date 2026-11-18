@@ -15,9 +15,11 @@
                     <x-breeze.nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
 Dashboard
                     </x-breeze.nav-link>
+                    @if(auth()->user()->is_admin)
                     <x-breeze.nav-link :href="route('userzone.categories.index')" :active="request()->routeIs('userzone.categories.index')">
                         Categories
                     </x-breeze.nav-link>
+                    @endif
                     <x-breeze.nav-link :href="route('userzone.articles.index')" :active="request()->routeIs('userzone.articles.*')">
                         Articles
                     </x-breeze.nav-link>

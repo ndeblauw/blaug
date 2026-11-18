@@ -16,8 +16,6 @@ Route::resource('articles', ArticleController::class)->only(['index', 'show']);
 Route::resource('authors', AuthorController::class)->only(['index', 'show']);
 Route::resource('categories', CategoryController::class)->only(['index', 'show']);
 
-// Todo: add your public routes here
-
 /*
  * Authentication routes
  */
@@ -30,10 +28,14 @@ Route::middleware('auth')->group(function () {
     // For the user's dashboard (after login)
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-    // Todo: add your Userzone routes here
+    // Normal user routes here ------------------------------------------------------------------
     Route::prefix('user')->name('userzone.')->group(function () {
-        Route::resource('categories', App\Http\Controllers\Userzone\CategoryController::class)->except('show');
         Route::resource('articles', App\Http\Controllers\Userzone\ArticleController::class)->except('show');
+    });
+
+    // Admin user routes -------------------------------------------------------------------------
+    Route::prefix('user')->name('userzone.')->middleware(\App\Http\Middleware\IsAdmin::class)->group(function () {
+        Route::resource('categories', App\Http\Controllers\Userzone\CategoryController::class)->except('show');
     });
 
     // For the user's profile management
