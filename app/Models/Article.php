@@ -5,11 +5,14 @@ namespace App\Models;
 use Database\Factories\ArticleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Article extends Model
+class Article extends Model implements HasMedia
 {
     /** @use HasFactory<ArticleFactory> */
     use HasFactory;
+    use InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -50,8 +53,8 @@ class Article extends Model
 
     public function getImagePath()
     {
-        if($this->image_path !== null) {
-            return "/storage/$this->image_path";
+        if($this->getMedia('headers')->isNotEmpty()) {
+            return $this->getMedia('headers')->first()->getUrl();
         } else {
             return "/img/default-article.png";
         }

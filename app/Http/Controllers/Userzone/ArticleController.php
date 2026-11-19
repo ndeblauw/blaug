@@ -53,8 +53,9 @@ class ArticleController extends Controller
 
         $article->categories()->sync($validated['categories'] ?? []);
 
-        $path = $request->file('image')?->store('images', 'public');
-        $article->update(['image_path' => $path]);
+        if($request->has('image')) {
+            $article->addMediaFromRequest('image')->toMediaCollection('headers');
+        }
 
         return redirect()->route('userzone.articles.index');
     }
@@ -93,8 +94,7 @@ class ArticleController extends Controller
         $article->categories()->sync($validated['categories'] ?? []);
 
         if($request->has('image')) {
-            $path = $request->file('image')?->store('images', 'public');
-            $article->update(['image_path' => $path]);
+            $article->addMediaFromRequest('image')->toMediaCollection('headers');
         }
 
         return redirect()->route('userzone.articles.index');
