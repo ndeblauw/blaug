@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Userzone\DashboardController;
 use App\Http\Controllers\Userzone\ProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -15,6 +16,8 @@ Route::get('/', WelcomeController::class)->name('welcome');
 Route::resource('articles', ArticleController::class)->only(['index', 'show']);
 Route::resource('authors', AuthorController::class)->only(['index', 'show']);
 Route::resource('categories', CategoryController::class)->only(['index', 'show']);
+
+Route::post('articles/{id}/comments', [CommentController::class, 'store'])->name('articles.comments.store');
 
 /*
  * Authentication routes

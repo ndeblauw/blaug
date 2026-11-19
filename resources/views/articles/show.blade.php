@@ -31,6 +31,14 @@
         Comments ({{ $article->comments->count() }})
     </h2>
 
+    <form method="POST" action="{{route('articles.comments.store', $article->id)}}" class="mt-4 max-w-xl">
+        @csrf
+
+        <x-form-textarea name="content" label="Your comment" placeholder="Leave a comment" rows="4" required/>
+
+        <button type="submit" class="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">Post comment</button>
+    </form>
+
     <div class="mt-4 divide-y divide-blue-100 border-t border-blue-100">
         @forelse($article->comments as $comment)
             <div class="py-4">
