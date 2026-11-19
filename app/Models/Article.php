@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Article extends Model implements HasMedia
 {
@@ -54,10 +56,24 @@ class Article extends Model implements HasMedia
     public function getImagePath()
     {
         if($this->getMedia('headers')->isNotEmpty()) {
-            return $this->getMedia('headers')->first()->getUrl();
+            return $this->getMedia('headers')->first()->getUrl('thumbnail');
         } else {
             return "/img/default-article.png";
         }
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('thumbnail')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
+
+        $this
+            ->addMediaConversion('details')
+            ->fit(Fit::Contain, 600, 300)
+            ->nonQueued();
+
     }
 
 }
