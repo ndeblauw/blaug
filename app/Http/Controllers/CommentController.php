@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Comment;
+use App\Notifications\NewCommentToYourArticleNotification;
 use Illuminate\Http\Request;
 
 
@@ -16,11 +18,16 @@ class CommentController extends Controller
         ]);
 
         // step 1 - load necessary data
-        // step 2 - create the comment
-        Comment::create([
+        $article = Article::findOrFail($id);
+
+        // step 2a - create the comment
+        $comment = Comment::create([
             'article_id' => $id,
             'content' => $validated['content'],
         ]);
+
+        // Step 2b - notify the author
+        $article->author->notify(new NewCommentToYourArticleNotification($comment));
 
         // step 3 - return a response (view, redirect)
         return redirect()->back();
