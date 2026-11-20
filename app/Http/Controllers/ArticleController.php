@@ -15,9 +15,11 @@ class ArticleController extends Controller
 
     public function show(int $id)
     {
-        $article = Article::find($id);
+        $article = Article::findOrFail($id);
 
-        return view('articles.show', compact('article'));
-
+        return view('articles.show', [
+            'article' => $article,
+            'comments' => $article->visibleCommentsFor(auth()->user()),
+        ]);
     }
 }

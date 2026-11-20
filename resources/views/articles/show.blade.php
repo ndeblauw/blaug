@@ -28,15 +28,24 @@
 
 <section class="mt-12 max-w-3xl">
     <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-900">
-        Comments ({{ $article->comments->count() }})
+        Comments ({{ $comments->count() }})
     </h2>
 
     <x-article-comment-form :article="$article" />
 
     <div class="mt-4 divide-y divide-blue-100 border-t border-blue-100">
-        @forelse($article->comments as $comment)
+        @forelse($comments as $comment)
             <div class="py-4">
                 <p class="text-xs text-slate-400">{{ $comment->created_at->format('M j, Y') }} - {{ $comment->user->name }}</p>
+
+                @if($comment->approved_at === null)
+                    @if(auth()->id() === $comment->user_id)
+                        <p class="mt-1 text-sm text-amber-700">This comment is awaiting validation. You're the only one to see it.</p>
+                    @else
+                        <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-amber-600">Awaiting validation</p>
+                    @endif
+                @endif
+
                 <p class="mt-1 text-sm leading-relaxed text-slate-700">{{ $comment->content }}</p>
             </div>
         @empty

@@ -5,15 +5,16 @@ namespace App\Models;
 use Database\Factories\ArticleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Article extends Model implements HasMedia
 {
     /** @use HasFactory<ArticleFactory> */
     use HasFactory;
+
     use InteractsWithMedia;
 
     protected $guarded = [];
@@ -30,6 +31,14 @@ class Article extends Model implements HasMedia
         return $this->hasMany(Comment::class);
     }
 
+    public function visibleCommentsFor($user)
+    {
+        return $this->comments()
+            ->with(['user', 'article'])
+            ->get()
+            ->filter(fn (Comment $comment) => $comment->canView($user));
+    }
+
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
@@ -42,7 +51,7 @@ class Article extends Model implements HasMedia
 
     public function canManage($user): bool
     {
-        if($user->is_admin) {
+        if ($user->is_admin) {
             return true;
         }
 
@@ -55,10 +64,10 @@ class Article extends Model implements HasMedia
 
     public function getImagePath()
     {
-        if($this->getMedia('headers')->isNotEmpty()) {
+        if ($this->getMedia('headers')->isNotEmpty()) {
             return $this->getMedia('headers')->first()->getUrl('thumbnail');
         } else {
-            return "/img/default-article.png";
+            return '/img/default-article.png';
         }
     }
 
@@ -75,5 +84,4 @@ class Article extends Model implements HasMedia
             ->nonQueued();
 
     }
-
 }
