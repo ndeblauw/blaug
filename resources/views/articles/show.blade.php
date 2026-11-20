@@ -42,7 +42,7 @@
     <div class="mt-4 divide-y divide-blue-100 border-t border-blue-100">
         @forelse($article->comments as $comment)
             <div class="py-4">
-                <p class="text-xs text-slate-400">{{ $comment->created_at->format('M j, Y') }}</p>
+                <p class="text-xs text-slate-400">{{ $comment->created_at->format('M j, Y') }} - {{ $comment->user->name }}</p>
                 <p class="mt-1 text-sm leading-relaxed text-slate-700">{{ $comment->content }}</p>
             </div>
         @empty

@@ -13,6 +13,7 @@ return new class extends Migration
 
             $table->text('content');
             $table->foreignId('article_id');
+            $table->foreignId('user_id');
 
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ Route::resource('articles', ArticleController::class)->only(['index', 'show']);
 Route::resource('authors', AuthorController::class)->only(['index', 'show']);
 Route::resource('categories', CategoryController::class)->only(['index', 'show']);
 
-Route::post('articles/{id}/comments', [CommentController::class, 'store'])->name('articles.comments.store');
+Route::post('articles/{id}/comments', [CommentController::class, 'store'])->middleware('auth')->name('articles.comments.store');
 
 /*
  * Authentication routes
