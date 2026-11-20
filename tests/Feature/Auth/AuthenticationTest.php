@@ -20,6 +20,34 @@ test('users can authenticate using the login screen', function () {
     $response->assertRedirect(route('dashboard', absolute: false));
 });
 
+test('users are redirected back to where they came from after login', function () {
+    $user = User::factory()->create();
+
+    $this->get(route('login', ['redirect' => '/articles/1#comments']));
+
+    $response = $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect('/articles/1#comments');
+});
+
+test('users are not redirected to external urls after login', function () {
+    $user = User::factory()->create();
+
+    $this->get(route('login', ['redirect' => 'https://example.com']));
+
+    $response = $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect(route('dashboard', absolute: false));
+});
+
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
