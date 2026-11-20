@@ -34,13 +34,13 @@ class NewCommentToYourArticleNotification extends Notification implements Should
      */
     public function toMail(object $notifiable): MailMessage
     {
-        sleep(5);
-
         return (new MailMessage)
+            ->greeting('Good morning'.$notifiable->name.'!')
             ->line('Your article <strong>' . $this->comment->article->title .'</strong> received a new comment.')
             ->line('<em>' . $this->comment->content . '<em>' )
             ->action('See it on the site', route('articles.show', $this->comment->article->id))
-            ->line('Thank you for stimulating discussion!');
+            ->line('Thank you for stimulating discussion!')
+            ->salutation('Let\'s stay in touch!');
     }
 
     /**
