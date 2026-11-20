@@ -21,6 +21,14 @@ class CommentFactory extends Factory
             'content' => $this->faker->text(),
             'article_id' => $this->faker->numberBetween(1, 15),
             'user_id' => $this->faker->numberBetween(1, 15),
+            'approved_at' => now(),
         ];
+    }
+
+    public function unapproved(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'approved_at' => null,
+        ]);
     }
 }

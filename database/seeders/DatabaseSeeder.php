@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
         User::factory(15)->create();
 
         $articles = Article::factory(20)->create();
-        Comment::factory(40)->create();
+        Comment::factory(35)->create();
+        Comment::factory(5)->unapproved()->create();
 
         Category::factory(5)->create();
         foreach ($articles as $article) {
