@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     // Normal user routes here ------------------------------------------------------------------
     Route::prefix('user')->name('userzone.')->group(function () {
         Route::resource('articles', App\Http\Controllers\Userzone\ArticleController::class)->except('show');
+        Route::resource('comments', App\Http\Controllers\Userzone\CommentController::class)->except(['create', 'store']);
     });
 
     // Admin user routes -------------------------------------------------------------------------

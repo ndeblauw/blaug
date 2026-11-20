@@ -23,6 +23,9 @@ Dashboard
                     <x-breeze.nav-link :href="route('userzone.articles.index')" :active="request()->routeIs('userzone.articles.*')">
                         Articles
                     </x-breeze.nav-link>
+                    <x-breeze.nav-link :href="route('userzone.comments.index')" :active="request()->routeIs('userzone.comments.*')">
+                        Comments
+                    </x-breeze.nav-link>
                 </div>
             </div>
 
@@ -83,6 +86,9 @@ Log Out
             </x-breeze.responsive-nav-link>
             <x-breeze.responsive-nav-link :href="route('userzone.articles.index')" :active="request()->routeIs('userzone.articles.*')">
                 Articles
+            </x-breeze.responsive-nav-link>
+            <x-breeze.responsive-nav-link :href="route('userzone.comments.index')" :active="request()->routeIs('userzone.comments.*')">
+                Comments
             </x-breeze.responsive-nav-link>
         </div>
 
