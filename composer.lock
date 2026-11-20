@@ -861,16 +861,16 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "094d0ec418eb3b1411ea271a180ec95cae6ae933"
+                "reference": "863d10526fe8232e79a8005220472ea553fd0b82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/094d0ec418eb3b1411ea271a180ec95cae6ae933",
-                "reference": "094d0ec418eb3b1411ea271a180ec95cae6ae933",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/863d10526fe8232e79a8005220472ea553fd0b82",
+                "reference": "863d10526fe8232e79a8005220472ea553fd0b82",
                 "shasum": ""
             },
             "require": {
@@ -925,7 +925,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/promises/issues",
-                "source": "https://github.com/guzzle/promises/tree/3.1.0"
+                "source": "https://github.com/guzzle/promises/tree/3.1.1"
             },
             "funding": [
                 {
@@ -941,21 +941,21 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-18T12:48:16+00:00",
-            "published-time": "2026-10-18T12:48:47+00:00"
+            "time": "2026-11-20T00:03:31+00:00",
+            "published-time": "2026-11-20T00:04:39+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "3.5.0",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "b7d9cd94918e1f042d22cf188a7a866e5906bf1d"
+                "reference": "ef2058cc884d864affa6ef7cd23a68d45e015c2f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/b7d9cd94918e1f042d22cf188a7a866e5906bf1d",
-                "reference": "b7d9cd94918e1f042d22cf188a7a866e5906bf1d",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/ef2058cc884d864affa6ef7cd23a68d45e015c2f",
+                "reference": "ef2058cc884d864affa6ef7cd23a68d45e015c2f",
                 "shasum": ""
             },
             "require": {
@@ -1047,7 +1047,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/3.5.0"
+                "source": "https://github.com/guzzle/psr7/tree/3.5.1"
             },
             "funding": [
                 {
@@ -1063,8 +1063,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-18T15:29:09+00:00",
-            "published-time": "2026-11-18T15:29:39+00:00"
+            "time": "2026-11-19T20:35:18+00:00",
+            "published-time": "2026-11-19T20:36:27+00:00"
         },
         {
             "name": "guzzlehttp/uri-template",
@@ -9452,12 +9452,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "9ca11cd1098a5cf36dd8be9de62d5c57d571a582"
+                "reference": "ea3fd42f04ff44f4cd3ad8c549595baeef0103d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/9ca11cd1098a5cf36dd8be9de62d5c57d571a582",
-                "reference": "9ca11cd1098a5cf36dd8be9de62d5c57d571a582",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/ea3fd42f04ff44f4cd3ad8c549595baeef0103d3",
+                "reference": "ea3fd42f04ff44f4cd3ad8c549595baeef0103d3",
                 "shasum": ""
             },
             "conflict": {
@@ -9538,6 +9538,7 @@
                 "barrelstrength/sprout-forms": "<3.9",
                 "barryvdh/laravel-translation-manager": "<0.6.8",
                 "barzahlen/barzahlen-php": "<2.0.1",
+                "baserproject/baser-core": "<5.3",
                 "baserproject/basercms": "<=5.2.2",
                 "bassjobsen/bootstrap-3-typeahead": ">4.0.2",
                 "bazaarvoice/bazaarvoice-magento2-ext": ">=8,<9.1.11",
@@ -9555,7 +9556,7 @@
                 "blueways/bw-captcha": ">=4,<5.4.2",
                 "bmarshall511/wordpress_zero_spam": "<5.2.13",
                 "bolt/bolt": "<3.7.2",
-                "bolt/core": "<=4.2",
+                "bolt/core": "<6.1.5",
                 "born05/craft-twofactorauthentication": "<3.3.4",
                 "bottelet/flarepoint": "<2.2.1",
                 "bref/bref": "<2.1.17",
@@ -9885,6 +9886,7 @@
                 "jambagecom/div2007": "<0.10.2",
                 "james-heinrich/getid3": "<1.9.21",
                 "james-heinrich/phpthumb": "<=1.7.23",
+                "jane-php/open-api-3": "<7.12",
                 "jasig/phpcas": "<1.3.3",
                 "jayanta/laravel-threat-detection": "<1.9",
                 "jbartels/wec-map": "<3.0.3",
@@ -10077,7 +10079,7 @@
                 "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
                 "october/backend": "<1.1.2",
                 "october/cms": "<1.0.469|==1.0.469|==1.0.471|==1.1.1",
-                "october/october": "<3.7.14|>=4,<4.1.10|>=4.3,<4.3.4",
+                "october/october": "<3.7.14|>=4,<4.3.4",
                 "october/rain": "<=3.7.13|>=4,<=4.1.9",
                 "october/system": "<3.7.17|>=4,<4.2.23",
                 "oliverklee/phpunit": "<3.5.15",
@@ -10129,7 +10131,7 @@
                 "phanan/koel": "<=9.7",
                 "pheditor/pheditor": "<2.0.8",
                 "phenx/php-svg-lib": "<0.5.2",
-                "php": "<8.2.35|>=8.3,<8.3.36|>=8.4,<8.4.27|>=8.5,<8.5.12",
+                "php": "<8.2.36|>=8.3,<8.3.37|>=8.4,<8.4.28|>=8.5,<8.5.13",
                 "php-censor/php-censor": "<2.0.13|>=2.1,<2.1.5",
                 "php-mod/curl": "<2.3.2",
                 "php-standard-library/h2": ">=6.1,<6.1.2|>=6.2,<6.2.1",
@@ -10626,8 +10628,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-18T23:16:43+00:00",
-            "published-time": "2026-11-18T23:16:48+00:00"
+            "time": "2026-11-20T05:52:42+00:00",
+            "published-time": "2026-11-20T05:52:47+00:00"
         },
         {
             "name": "sebastian/cli-parser",
