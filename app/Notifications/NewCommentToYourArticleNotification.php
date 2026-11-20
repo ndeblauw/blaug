@@ -34,6 +34,8 @@ class NewCommentToYourArticleNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        sleep(5);
+
         return (new MailMessage)
             ->line('Your article <strong>' . $this->comment->article->title .'</strong> received a new comment.')
             ->line('<em>' . $this->comment->content . '<em>' )
