@@ -21,7 +21,7 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraphs(5, true),
             'author_id' => $this->faker->numberBetween(1, 5),
-            'publish_date' => $this->faker->dateTime(),
+            'publish_date' => $this->faker->dateTimeBetween('-4 weeks', 'now'),
         ];
     }
 }
