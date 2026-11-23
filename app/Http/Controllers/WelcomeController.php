@@ -12,7 +12,8 @@ class WelcomeController extends Controller
      */
     public function __invoke()
     {
-        $popularArticles = Article::query()
+        $popularArticles = cache()->remember('popular_articles', 10, function () {
+            return Article::query()
                 ->with('author')
                 ->withCount('comments')
                 ->orderByDesc('comments_count')
@@ -26,8 +27,10 @@ class WelcomeController extends Controller
                     'comments_count' => $article->comments_count,
                 ])
                 ->all();
+        });
 
-        $recentArticles = Article::query()
+        $recentArticles = cache()->remember('recent_articles', 10, function () {
+            return Article::query()
                 ->with('author')
                 ->orderByDesc('publish_date')
                 ->take(5)
@@ -39,8 +42,10 @@ class WelcomeController extends Controller
                     'publish_date' => $article->publish_date->format('M j, Y'),
                 ])
                 ->all();
+        });
 
-        $activeUsers = User::query()
+        $activeUsers = cache()->remember('active_users', 10, function () {
+            return User::query()
                 ->whereHas('comments')
                 ->withCount('comments')
                 ->orderByDesc('comments_count')
@@ -52,7 +57,8 @@ class WelcomeController extends Controller
                     'comments_count' => $user->comments_count,
                 ])
                 ->all();
-    
+        });
+
         return view('welcome', compact('popularArticles', 'recentArticles', 'activeUsers'));
     }
 }
