@@ -8,7 +8,9 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
+        // Normal eager loading (avoid N+1)
+        $articles = Article::get();
+        $articles->load('author','media','categories');
 
         return view('articles.index', compact('articles'));
     }
