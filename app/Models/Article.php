@@ -19,6 +19,19 @@ class Article extends Model implements HasMedia
 
     protected $guarded = [];
 
+    protected static function booted(): void
+    {
+        static::saved(function () {
+            cache()->forget('popular_articles');
+            cache()->forget('recent_articles');
+        });
+
+        static::deleted(function () {
+            cache()->forget('popular_articles');
+            cache()->forget('recent_articles');
+        });
+    }
+
     protected function casts(): array
     {
         return [

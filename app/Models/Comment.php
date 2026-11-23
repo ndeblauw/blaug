@@ -13,6 +13,19 @@ class Comment extends Model
 
     protected $guarded = [];
 
+    protected static function booted(): void
+    {
+        static::saved(function () {
+            cache()->forget('popular_articles');
+            cache()->forget('active_users');
+        });
+
+        static::deleted(function () {
+            cache()->forget('popular_articles');
+            cache()->forget('active_users');
+        });
+    }
+
     protected function casts(): array
     {
         return [
