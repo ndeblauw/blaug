@@ -12,6 +12,10 @@ class ArticleController extends Controller
         $articles = Article::get();
         $articles->load('author','media','categories');
 
+        // Additionally only load relevant columns
+        // $articles = Article::select('id','title','author_id')->get();
+        // $articles->load('author:id,name','media','categories:id,name');
+
         return view('articles.index', compact('articles'));
     }
 

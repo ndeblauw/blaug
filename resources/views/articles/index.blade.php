@@ -19,10 +19,11 @@
 
                 <p class="mt-1 text-xs uppercase tracking-wider text-blue-600">By {{ $article->author->name }}</p>
 
+{{--
                 <p class="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">
                     {{ Str::limit($article->content, 180) }}
                 </p>
-
+--}}
                 <a href="{{ route('articles.show', $article) }}" class="mt-3 inline-block text-sm font-medium text-blue-600 hover:text-blue-800">
                     Read article
                 </a>
