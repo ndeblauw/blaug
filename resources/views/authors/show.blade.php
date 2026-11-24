@@ -5,7 +5,11 @@
 <section class="mt-6 max-w-3xl">
     <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Author</p>
 
-    <h1 class="mt-2 text-4xl font-semibold tracking-tight text-slate-900">{{ $author->name }}</h1>
+    <div class="mt-2 flex items-center gap-4">
+        <img src="{{ $author->getAvatarPath('profile') }}" alt="{{ $author->name }}" class="h-20 w-20 rounded-full object-cover" />
+
+        <h1 class="text-4xl font-semibold tracking-tight text-slate-900">{{ $author->name }}</h1>
+    </div>
 
     <p class="mt-4 text-sm text-slate-500">
         Member since {{ $author->created_at->format('M j, Y') }}

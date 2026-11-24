@@ -9,14 +9,18 @@
 <div class="mt-10 max-w-4xl divide-y divide-blue-100 border-t border-blue-100">
     @forelse($authors as $author)
         <article class="flex items-center justify-between gap-10 py-7">
-            <div>
-                <h2 class="text-lg font-semibold text-slate-900">
-                    <a href="{{ route('authors.show', $author) }}" class="hover:text-blue-700">{{ $author->name }}</a>
-                </h2>
+            <div class="flex items-center gap-4">
+                <img src="{{ $author->getAvatarPath() }}" alt="{{ $author->name }}" class="h-12 w-12 rounded-full object-cover" />
 
-                <p class="mt-1 text-xs uppercase tracking-wider text-blue-600">
-                    {{ $author->articles_count }} {{ Str::plural('article', $author->articles_count) }}
-                </p>
+                <div>
+                    <h2 class="text-lg font-semibold text-slate-900">
+                        <a href="{{ route('authors.show', $author) }}" class="hover:text-blue-700">{{ $author->name }}</a>
+                    </h2>
+
+                    <p class="mt-1 text-xs uppercase tracking-wider text-blue-600">
+                        {{ $author->articles_count }} {{ Str::plural('article', $author->articles_count) }}
+                    </p>
+                </div>
             </div>
 
             <p class="shrink-0 text-xs text-slate-400">

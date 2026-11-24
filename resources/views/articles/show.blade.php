@@ -13,10 +13,14 @@
         @endforeach
     </div>
 
-    <p class="mt-4 text-sm text-slate-500">
-        By <span class="font-medium text-blue-700">{{ $article->author->name }}</span>
-        &middot;
-        {{ \Illuminate\Support\Carbon::parse($article->publish_date)->format('M j, Y') }}
+    <p class="mt-4 flex items-center gap-2 text-sm text-slate-500">
+        <img src="{{ $article->author->getAvatarPath() }}" alt="{{ $article->author->name }}" class="h-6 w-6 rounded-full object-cover" />
+
+        <span>
+            By <span class="font-medium text-blue-700">{{ $article->author->name }}</span>
+            &middot;
+            {{ \Illuminate\Support\Carbon::parse($article->publish_date)->format('M j, Y') }}
+        </span>
     </p>
 
     <img src="{{$article->getImagePath() }}" />
@@ -36,7 +40,11 @@
     <div class="mt-4 divide-y divide-blue-100 border-t border-blue-100">
         @forelse($comments as $comment)
             <div class="py-4">
-                <p class="text-xs text-slate-400">{{ $comment->created_at->format('M j, Y') }} - {{ $comment->user->name }}</p>
+                <div class="flex items-center gap-2">
+                    <img src="{{ $comment->user->getAvatarPath() }}" alt="{{ $comment->user->name }}" class="h-5 w-5 rounded-full object-cover" />
+
+                    <p class="text-xs text-slate-400">{{ $comment->created_at->format('M j, Y') }} - {{ $comment->user->name }}</p>
+                </div>
 
                 @if($comment->approved_at === null)
                     @if(auth()->id() === $comment->user_id)
