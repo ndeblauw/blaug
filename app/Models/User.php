@@ -43,12 +43,14 @@ class User extends Authenticatable implements HasMedia
         static::saved(function () {
             cache()->forget('popular_articles');
             cache()->forget('recent_articles');
+            cache()->forget('popular_authors');
             cache()->forget('active_users');
         });
 
         static::deleted(function () {
             cache()->forget('popular_articles');
             cache()->forget('recent_articles');
+            cache()->forget('popular_authors');
             cache()->forget('active_users');
         });
     }
@@ -81,7 +83,7 @@ class User extends Authenticatable implements HasMedia
         $avatar = $this->getFirstMedia('avatars');
 
         return $avatar !== null
-            ? $avatar->getUrl($conversion)
+            ? $avatar->getAvailableUrl([$conversion, 'thumb', 'profile'])
             : '/img/default-avatar.svg';
     }
 

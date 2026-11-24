@@ -103,6 +103,52 @@ test('the welcome page reflects article and comment changes immediately', functi
         ->assertSee('1 comment');
 });
 
+test('the welcome page lists the five most popular authors', function () {
+    $recentAuthor = User::factory()->create(['name' => 'Recent Author']);
+    Article::factory(5)->create([
+        'author_id' => $recentAuthor->id,
+        'publish_date' => now()->subHour(),
+    ]);
+
+    $commenter = User::factory()->create(['name' => 'Commenter']);
+
+    $commentCounts = [
+        'Popular Six' => 6,
+        'Popular Five' => 5,
+        'Popular Four' => 4,
+        'Popular Three' => 3,
+        'Popular Two' => 2,
+        'Popular One' => 1,
+    ];
+
+    foreach ($commentCounts as $name => $commentCount) {
+        $author = User::factory()->create(['name' => $name]);
+        $article = Article::factory()->create([
+            'author_id' => $author->id,
+            'publish_date' => now()->subMonths(2),
+        ]);
+
+        Comment::factory($commentCount)->create([
+            'article_id' => $article->id,
+            'user_id' => $commenter->id,
+        ]);
+    }
+
+    User::factory()->create(['name' => 'Rita Reader']);
+
+    $this->get('/')
+        ->assertOk()
+        ->assertSeeInOrder([
+            'Popular Six',
+            'Popular Five',
+            'Popular Four',
+            'Popular Three',
+            'Popular Two',
+        ])
+        ->assertDontSee('Popular One')
+        ->assertDontSee('Rita Reader');
+});
+
 test('the welcome page lists the five most active users', function () {
     $author = User::factory()->create(['name' => 'Article Author']);
     $article = Article::factory()->create(['author_id' => $author->id]);

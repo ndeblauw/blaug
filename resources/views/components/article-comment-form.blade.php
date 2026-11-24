@@ -1,19 +1,33 @@
 <div id="comments">
     @auth
-    <form method="POST" action="{{route('articles.comments.store', $article->id)}}" class="mt-4 max-w-xl">
-        @csrf
+        <form method="POST" action="{{ route('articles.comments.store', $article->id) }}" class="mt-8 border-2 border-blue-950 p-6 sm:p-8">
+            @csrf
 
-        You are {{ auth()->user()->name }}
+            <div class="flex items-center justify-between gap-4">
+                <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-blue-950/60">
+                    Signed in as <span class="font-bold text-blue-950">{{ auth()->user()->name }}</span>
+                </p>
 
-        <x-form-textarea name="content" label="Your comment" placeholder="Leave a comment" rows="4" required/>
+                <span class="h-2 w-2 bg-[#d9ff3f]" aria-hidden="true"></span>
+            </div>
 
-        <button type="submit" class="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">Post comment</button>
-    </form>
+            <div class="mt-5">
+                <x-form-textarea name="content" label="Your comment" placeholder="Say something worth reading" rows="4" required />
+            </div>
+
+            <button type="submit" class="mt-5 bg-blue-600 px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white transition hover:bg-blue-950">
+                Post comment
+            </button>
+        </form>
     @else
-        <div class="bg-amber-100 py-1 px-4 flex justify-between items-center">
-            <span>You need to be logged in to make a comment</span>
-            <a class="rounded bg-amber-300 hover:bg-amber-500 px-2 py-0.5" href="{{ route('login', ['redirect' => request()->getRequestUri().'#comments']) }}">Login</a>
+        <div class="mt-8 flex flex-col gap-4 border-2 border-blue-950 bg-[#d9ff3f] px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+            <span class="text-sm font-bold uppercase tracking-[-0.01em] text-blue-950">
+                You need to be logged in to make a comment.
+            </span>
+
+            <a href="{{ route('login', ['redirect' => request()->getRequestUri().'#comments']) }}" class="w-fit bg-blue-950 px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white transition hover:bg-blue-600">
+                Login
+            </a>
         </div>
     @endauth
-
 </div>

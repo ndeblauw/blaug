@@ -8,24 +8,32 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        // Normal eager loading (avoid N+1)
-        $articles = Article::get();
-        $articles->load('author','media','categories');
-
-        // Additionally only load relevant columns
-        // $articles = Article::select('id','title','author_id')->get();
-        // $articles->load('author:id,name','media','categories:id,name');
+        $articles = Article::query()
+            ->with(['author', 'media', 'categories'])
+            ->withCount('comments')
+            ->orderByDesc('publish_date')
+            ->get();
 
         return view('articles.index', compact('articles'));
     }
 
     public function show(int $id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::query()
+            ->with('author.media')
+            ->findOrFail($id);
+
+        $relatedArticles = Article::query()
+            ->with(['author', 'media', 'categories'])
+            ->whereKeyNot($article->id)
+            ->orderByDesc('publish_date')
+            ->take(3)
+            ->get();
 
         return view('articles.show', [
             'article' => $article,
             'comments' => $article->visibleCommentsFor(auth()->user()),
+            'relatedArticles' => $relatedArticles,
         ]);
     }
 }

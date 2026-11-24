@@ -2,6 +2,8 @@
 
 use App\Models\Article;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 test('authors page lists only users that have articles', function () {
     $author = User::factory()->create(['name' => 'Ada Author']);
@@ -52,4 +54,23 @@ test('author page returns not found for a user without articles', function () {
     $reader = User::factory()->create();
 
     $this->get("/authors/{$reader->id}")->assertNotFound();
+});
+
+test('author pages render the author avatar', function () {
+    Storage::fake('public');
+
+    $author = User::factory()->create(['name' => 'Ada Author']);
+    Article::factory()->create(['author_id' => $author->id]);
+
+    $author
+        ->addMedia(UploadedFile::fake()->image('avatar.jpg', 400, 400))
+        ->toMediaCollection('avatars');
+
+    $this->get('/authors')
+        ->assertOk()
+        ->assertSee($author->getAvatarPath('thumb'), false);
+
+    $this->get("/authors/{$author->id}")
+        ->assertOk()
+        ->assertSee($author->getAvatarPath('profile'), false);
 });

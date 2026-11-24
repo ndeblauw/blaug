@@ -24,6 +24,12 @@ class CategoryController extends Controller
             ->whereHas('articles')
             ->findOrFail($id);
 
+        $category->load([
+            'articles' => fn ($query) => $query->withCount('comments')->orderByDesc('publish_date'),
+            'articles.author',
+            'articles.media',
+        ]);
+
         return view('categories.show', compact('category'));
     }
 }

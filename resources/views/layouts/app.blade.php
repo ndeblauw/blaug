@@ -8,16 +8,35 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- Tailwind CSS & Alpine.js via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.1/dist/cdn.min.js"></script>
 
-        <!-- Tailwind CSS & Alpine.js via CDN -->
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.1/dist/cdn.min.js"></script>
+    <style>
+        body {
+            font-family: 'Archivo', ui-sans-serif, system-ui, sans-serif !important;
+        }
+
+        body .font-mono {
+            font-family: 'Space Mono', ui-monospace, monospace !important;
+        }
+
+        *, *::before, *::after {
+            border-radius: 0 !important;
+        }
+
+        ::selection {
+            background: #d9ff3f;
+            color: #172554;
+        }
+    </style>
 </head>
 <body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen bg-[#f2f5fb]">
     @include('layouts.app_navigation')
 
     <!-- Page Heading -->

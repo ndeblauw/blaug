@@ -11,6 +11,7 @@ class AuthorController extends Controller
     {
         $authors = User::query()
             ->whereHas('articles')
+            ->with('media')
             ->withCount('articles')
             ->orderBy('name') // Todo: tbd if this is the right order
             ->get();
@@ -23,6 +24,13 @@ class AuthorController extends Controller
         $author = User::query()
             ->whereHas('articles')
             ->findOrFail($id);
+
+        $author->load([
+            'media',
+            'articles' => fn ($query) => $query->withCount('comments')->orderByDesc('publish_date'),
+            'articles.media',
+            'articles.categories',
+        ]);
 
         return view('authors.show', compact('author'));
     }
