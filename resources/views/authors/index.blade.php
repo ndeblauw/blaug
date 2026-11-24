@@ -1,31 +1,54 @@
 <x-site-layout title="Authors overview">
 
-<section class="max-w-4xl">
-    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">BLAUG</p>
-    <h1 class="mt-2 text-3xl font-semibold tracking-tight text-slate-900">Authors</h1>
-    <p class="mt-2 text-sm text-slate-500">{{ $authors->count() }} authors</p>
-</section>
-
-<div class="mt-10 max-w-4xl divide-y divide-blue-100 border-t border-blue-100">
-    @forelse($authors as $author)
-        <article class="flex items-center justify-between gap-10 py-7">
+    <section class="mx-auto max-w-[1440px] px-6 pt-14 lg:px-12 lg:pt-20">
+        <div class="flex flex-col gap-8 border-b-2 border-blue-950 pb-10 lg:flex-row lg:items-end lg:justify-between">
             <div>
-                <h2 class="text-lg font-semibold text-slate-900">
-                    <a href="{{ route('authors.show', $author) }}" class="hover:text-blue-700">{{ $author->name }}</a>
-                </h2>
+                <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-blue-600">The masthead</p>
 
-                <p class="mt-1 text-xs uppercase tracking-wider text-blue-600">
-                    {{ $author->articles_count }} {{ Str::plural('article', $author->articles_count) }}
-                </p>
+                <h1 class="mt-4 text-5xl font-black uppercase leading-none tracking-[-0.05em] text-blue-950 sm:text-7xl">
+                    Authors <span class="text-blue-600">/{{ $authors->count() }}</span>
+                </h1>
             </div>
 
-            <p class="shrink-0 text-xs text-slate-400">
-                Member since {{ $author->created_at->format('M j, Y') }}
-            </p>
-        </article>
-    @empty
-        <p class="py-7 text-sm text-slate-500">No authors yet.</p>
-    @endforelse
-</div>
+            <div class="flex items-end gap-6">
+                <p class="max-w-xs text-sm leading-6 text-blue-950/60">
+                    The people who write the words. Every one of them has something to say.
+                </p>
+
+                <div class="hidden h-16 w-16 shrink-0 bg-stripes-blue lg:block" aria-hidden="true"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-[1440px] px-6 lg:px-12">
+        <div class="grid border-t border-blue-200 sm:grid-cols-2">
+            @forelse($authors as $author)
+                <a href="{{ route('authors.show', $author) }}" class="group relative flex items-center gap-5 border-b border-blue-200 py-7 sm:odd:pr-10 sm:even:border-l sm:even:pl-10">
+                    <span class="w-8 shrink-0 font-mono text-[10px] font-bold text-blue-600">
+                        {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
+                    </span>
+
+                    <span class="flex h-14 w-14 shrink-0 items-center justify-center border-2 border-blue-950 bg-white text-lg font-black text-blue-950 transition duration-300 group-hover:bg-blue-950 group-hover:text-white">
+                        {{ mb_strtoupper(mb_substr($author->name, 0, 1)) }}
+                    </span>
+
+                    <span class="min-w-0 flex-1">
+                        <span class="block truncate text-xl font-extrabold uppercase tracking-[-0.02em] text-blue-950 transition group-hover:text-blue-600">
+                            {{ $author->name }}
+                        </span>
+                        <span class="mt-1 block font-mono text-[10px] uppercase tracking-[0.16em] text-blue-950/55">
+                            {{ $author->articles_count }} {{ Str::plural('article', $author->articles_count) }}
+                            &middot;
+                            Member since {{ $author->created_at->format('M Y') }}
+                        </span>
+                    </span>
+
+                    <span class="text-xl text-blue-950 transition group-hover:translate-x-1 group-hover:text-blue-600" aria-hidden="true">&rarr;</span>
+                </a>
+            @empty
+                <p class="py-10 text-sm text-blue-950/60">No authors yet.</p>
+            @endforelse
+        </div>
+    </section>
 
 </x-site-layout>
