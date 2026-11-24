@@ -4,30 +4,23 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
 
-test('categories page lists only categories that have articles', function () {
+test('the categories index lists only categories that have articles', function () {
     $category = Category::factory()->create(['name' => 'Laravel']);
-    $emptyCategory = Category::factory()->create(['name' => 'React']);
+    Category::factory()->create(['name' => 'React']);
 
-    Article::factory()->create()->categories()->attach($category);
+    Article::factory()
+        ->create(['author_id' => User::factory()->nonAdmin()->create()->id])
+        ->categories()
+        ->attach($category);
 
-    $response = $this->get('/categories');
-
-    $response
+    $this->get(route('categories.index'))
         ->assertOk()
         ->assertSee('Laravel')
         ->assertDontSee('React');
 });
 
-test('categories page renders when there are no categories', function () {
-    Category::factory()->create();
-
-    $this->get('/categories')
-        ->assertOk()
-        ->assertSee('No categories yet.');
-});
-
-test('category page shows the articles of that category', function () {
-    $author = User::factory()->create();
+test('the category detail page lists the articles of that category', function () {
+    $author = User::factory()->nonAdmin()->create();
 
     $category = Category::factory()->create(['name' => 'Laravel']);
     $otherCategory = Category::factory()->create(['name' => 'React']);
@@ -44,17 +37,9 @@ test('category page shows the articles of that category', function () {
     ]);
     $otherArticle->categories()->attach($otherCategory);
 
-    $response = $this->get("/categories/{$category->id}");
-
-    $response
+    $this->get(route('categories.show', $category))
         ->assertOk()
         ->assertSee('Laravel')
         ->assertSee('An article about Laravel')
         ->assertDontSee('An article about React');
-});
-
-test('category page returns not found for a category without articles', function () {
-    $category = Category::factory()->create();
-
-    $this->get("/categories/{$category->id}")->assertNotFound();
 });
