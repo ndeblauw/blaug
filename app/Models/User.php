@@ -7,11 +7,15 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, InteractsWithMedia, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -72,5 +76,27 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    public function getAvatarPath(string $conversion = 'thumb'): string
+    {
+        $avatar = $this->getFirstMedia('avatars');
+
+        return $avatar !== null
+            ? $avatar->getUrl($conversion)
+            : '/img/default-avatar.svg';
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('thumb')
+            ->fit(Fit::Crop, 96, 96)
+            ->nonQueued();
+
+        $this
+            ->addMediaConversion('profile')
+            ->fit(Fit::Crop, 240, 240)
+            ->nonQueued();
     }
 }
