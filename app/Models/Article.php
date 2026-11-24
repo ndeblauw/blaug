@@ -75,26 +75,27 @@ class Article extends Model implements HasMedia
         return false;
     }
 
-    public function getImagePath()
+    public function getImagePath(string $conversion = 'card'): string
     {
-        if ($this->getMedia('headers')->isNotEmpty()) {
-            return $this->getMedia('headers')->first()->getUrl('thumbnail');
-        } else {
+        $media = $this->getFirstMedia('headers');
+
+        if (! $media) {
             return '/img/default-article.png';
         }
+
+        return $media->getAvailableUrl([$conversion, 'card', 'thumbnail']);
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
         $this
-            ->addMediaConversion('thumbnail')
-            ->fit(Fit::Contain, 300, 300)
+            ->addMediaConversion('card')
+            ->fit(Fit::Crop, 800, 600)
             ->nonQueued();
 
         $this
-            ->addMediaConversion('details')
-            ->fit(Fit::Contain, 600, 300)
+            ->addMediaConversion('hero')
+            ->fit(Fit::Crop, 1600, 900)
             ->nonQueued();
-
     }
 }
