@@ -24,11 +24,13 @@ class Article extends Model implements HasMedia
         static::saved(function () {
             cache()->forget('popular_articles');
             cache()->forget('recent_articles');
+            cache()->forget('popular_authors');
         });
 
         static::deleted(function () {
             cache()->forget('popular_articles');
             cache()->forget('recent_articles');
+            cache()->forget('popular_authors');
         });
     }
 

@@ -17,11 +17,13 @@ class Comment extends Model
     {
         static::saved(function () {
             cache()->forget('popular_articles');
+            cache()->forget('popular_authors');
             cache()->forget('active_users');
         });
 
         static::deleted(function () {
             cache()->forget('popular_articles');
+            cache()->forget('popular_authors');
             cache()->forget('active_users');
         });
     }

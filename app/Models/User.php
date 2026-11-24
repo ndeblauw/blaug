@@ -39,12 +39,14 @@ class User extends Authenticatable
         static::saved(function () {
             cache()->forget('popular_articles');
             cache()->forget('recent_articles');
+            cache()->forget('popular_authors');
             cache()->forget('active_users');
         });
 
         static::deleted(function () {
             cache()->forget('popular_articles');
             cache()->forget('recent_articles');
+            cache()->forget('popular_authors');
             cache()->forget('active_users');
         });
     }

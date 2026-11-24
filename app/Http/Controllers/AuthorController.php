@@ -24,6 +24,12 @@ class AuthorController extends Controller
             ->whereHas('articles')
             ->findOrFail($id);
 
+        $author->load([
+            'articles' => fn ($query) => $query->withCount('comments')->orderByDesc('publish_date'),
+            'articles.media',
+            'articles.categories',
+        ]);
+
         return view('authors.show', compact('author'));
     }
 }
