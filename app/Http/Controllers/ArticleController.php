@@ -19,7 +19,9 @@ class ArticleController extends Controller
 
     public function show(int $id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::query()
+            ->with('author.media')
+            ->findOrFail($id);
 
         $relatedArticles = Article::query()
             ->with(['author', 'media', 'categories'])

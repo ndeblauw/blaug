@@ -83,7 +83,7 @@ class User extends Authenticatable implements HasMedia
         $avatar = $this->getFirstMedia('avatars');
 
         return $avatar !== null
-            ? $avatar->getUrl($conversion)
+            ? $avatar->getAvailableUrl([$conversion, 'thumb', 'profile'])
             : '/img/default-avatar.svg';
     }
 

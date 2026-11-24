@@ -28,8 +28,13 @@
                         {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
                     </span>
 
-                    <span class="flex h-14 w-14 shrink-0 items-center justify-center border-2 border-blue-950 bg-white text-lg font-black text-blue-950 transition duration-300 group-hover:bg-blue-950 group-hover:text-white">
-                        {{ mb_strtoupper(mb_substr($author->name, 0, 1)) }}
+                    <span class="h-14 w-14 shrink-0 border-2 border-blue-950 bg-blue-950">
+                        <img
+                            src="{{ $author->getAvatarPath('thumb') }}"
+                            alt="{{ $author->name }}"
+                            class="h-full w-full object-cover grayscale transition duration-500 ease-out group-hover:grayscale-0"
+                            loading="lazy"
+                        >
                     </span>
 
                     <span class="min-w-0 flex-1">

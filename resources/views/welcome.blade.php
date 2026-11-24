@@ -174,8 +174,13 @@
                                     {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
                                 </span>
 
-                                <span class="flex h-14 w-14 shrink-0 items-center justify-center border-2 border-blue-950 bg-blue-950 text-lg font-black text-white transition duration-300 group-hover:bg-[#d9ff3f] group-hover:text-blue-950">
-                                    {{ mb_strtoupper(mb_substr($author['name'], 0, 1)) }}
+                                <span class="h-14 w-14 shrink-0 border-2 border-blue-950 bg-blue-950">
+                                    <img
+                                        src="{{ $author['avatar'] }}"
+                                        alt="{{ $author['name'] }}"
+                                        class="h-full w-full object-cover grayscale transition duration-500 ease-out group-hover:grayscale-0"
+                                        loading="lazy"
+                                    >
                                 </span>
 
                                 <span class="min-w-0 flex-1">

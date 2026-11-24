@@ -23,8 +23,12 @@
             <div class="relative lg:col-span-4 lg:justify-self-end">
                 <div class="absolute -left-3 -top-3 h-full w-full bg-stripes-blue" aria-hidden="true"></div>
 
-                <div class="relative flex h-40 w-40 items-center justify-center border-2 border-blue-950 bg-blue-950 text-7xl font-black text-white sm:h-48 sm:w-48">
-                    {{ mb_strtoupper(mb_substr($author->name, 0, 1)) }}
+                <div class="relative h-40 w-40 border-2 border-blue-950 bg-blue-950 sm:h-48 sm:w-48">
+                    <img
+                        src="{{ $author->getAvatarPath('profile') }}"
+                        alt="{{ $author->name }}"
+                        class="h-full w-full object-cover"
+                    >
                 </div>
 
                 <span class="absolute -bottom-3 -right-3 h-8 w-8 border-2 border-blue-950 bg-[#d9ff3f]" aria-hidden="true"></span>

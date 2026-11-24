@@ -53,8 +53,12 @@
             </span>
 
             <div class="absolute -bottom-7 right-4 z-10 flex items-center gap-4 border-2 border-blue-950 bg-white px-4 py-3 sm:right-8 sm:px-5">
-                <span class="flex h-10 w-10 items-center justify-center bg-blue-950 text-sm font-black text-white">
-                    {{ mb_strtoupper(mb_substr($article->author->name, 0, 1)) }}
+                <span class="h-10 w-10 shrink-0 border-2 border-blue-950 bg-blue-950">
+                    <img
+                        src="{{ $article->author->getAvatarPath('thumb') }}"
+                        alt="{{ $article->author->name }}"
+                        class="h-full w-full object-cover"
+                    >
                 </span>
 
                 <span>

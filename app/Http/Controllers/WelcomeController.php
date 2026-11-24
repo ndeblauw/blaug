@@ -54,6 +54,7 @@ class WelcomeController extends Controller
         $popularAuthors = cache()->flexible('popular_authors', [10, 20], function () {
             return User::query()
                 ->whereHas('articles')
+                ->with('media')
                 ->withCount('articles')
                 ->withCount([
                     'articles as comments_count' => fn ($query) => $query->join('comments', 'comments.article_id', '=', 'articles.id'),
@@ -66,6 +67,7 @@ class WelcomeController extends Controller
                 ->map(fn (User $user) => [
                     'id' => $user->id,
                     'name' => $user->name,
+                    'avatar' => $user->getAvatarPath('thumb'),
                     'articles_count' => $user->articles_count,
                     'comments_count' => $user->comments_count,
                 ])
