@@ -6,9 +6,9 @@
 
     <title>
         @if($title)
-            {{ $title }} | BLAUG
+            {{ $title }} | {{ config('app.name') }}
         @else
-            BLAUG
+            {{ config('app.name') }}
         @endif
     </title>
 

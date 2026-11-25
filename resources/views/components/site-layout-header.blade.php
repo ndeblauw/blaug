@@ -8,7 +8,7 @@
             </span>
 
             <span class="text-2xl font-black uppercase leading-none tracking-[-0.05em] text-blue-950">
-                BLAUG
+                {{ config('app.name') }}
             </span>
 
             <span class="absolute -right-3 -top-1 h-3 w-3 bg-[#d9ff3f]" aria-hidden="true"></span>
