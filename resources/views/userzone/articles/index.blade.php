@@ -37,7 +37,7 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-end gap-4 text-xs font-semibold uppercase tracking-widest">
-                                        <a href="{{ route('articles.show', $article->id) }}" class="text-gray-600 hover:text-gray-800">View</a>
+                                        <a href="{{ route('articles.show', $article) }}" class="text-gray-600 hover:text-gray-800">View</a>
 
                                         <a href="{{ route('userzone.articles.edit', $article->id) }}" class="text-gray-800 hover:text-gray-600">Edit</a>
 

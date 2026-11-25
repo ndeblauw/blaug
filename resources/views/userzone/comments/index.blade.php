@@ -31,7 +31,7 @@
                         @forelse($comments as $comment)
                             <tr>
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('articles.show', $comment->article_id) }}" class="text-blue-600 hover:text-blue-800">{{ $comment->article->title }}</a>
+                                    <a href="{{ route('articles.show', $comment->article) }}" class="text-blue-600 hover:text-blue-800">{{ $comment->article->title }}</a>
                                 </td>
                                 <td class="px-6 py-4">{{ $comment->user->name }}</td>
                                 <td class="px-6 py-4 max-w-md">{{ $comment->content }}</td>

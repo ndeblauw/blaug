@@ -13,7 +13,7 @@
                         <div>
                             <dt class="text-xs font-semibold uppercase tracking-wider text-gray-500">Article</dt>
                             <dd class="mt-1">
-                                <a href="{{ route('articles.show', $comment->article_id) }}" class="text-blue-600 hover:text-blue-800">{{ $comment->article->title }}</a>
+                                <a href="{{ route('articles.show', $comment->article) }}" class="text-blue-600 hover:text-blue-800">{{ $comment->article->title }}</a>
                             </dd>
                         </div>
 

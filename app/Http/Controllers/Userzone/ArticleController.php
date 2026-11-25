@@ -41,6 +41,7 @@ class ArticleController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'min:3', 'max:255'],
+            'slug' => ['nullable', 'string', 'min:3', 'max:255'],
             'content' => ['required', 'string', 'min:3'],
             'author_id' => ['required', 'exists:users,id'],
             'publish_date' => ['required', 'date'],
@@ -77,6 +78,7 @@ class ArticleController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'min:3', 'max:255'],
+            'slug' => ['nullable', 'string', 'min:3', 'max:255'],
             'content' => ['required', 'string', 'min:3'],
             'author_id' => ['required', 'exists:users,id'],
             'publish_date' => ['required', 'date'],

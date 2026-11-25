@@ -21,6 +21,12 @@ class Article extends Model implements HasMedia
 
     protected static function booted(): void
     {
+        static::saving(function ($article) {
+            if ($article->slug === null) {
+                $article->slug = $this->slugify();
+            }
+        });
+
         static::saved(function () {
             cache()->forget('popular_articles');
             cache()->forget('recent_articles');
@@ -86,6 +92,12 @@ class Article extends Model implements HasMedia
         }
 
         return $media->getAvailableUrl([$conversion, 'card', 'thumbnail']);
+    }
+
+    private function slugify(): string
+    {
+        // Todo: improve this function to avoid duplate slugs, and maybe other isssues.
+        return str($this->title)->slug('-');
     }
 
     public function registerMediaConversions(?Media $media = null): void

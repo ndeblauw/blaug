@@ -17,6 +17,8 @@
                         <div class="space-y-4">
                             <x-form-textinput name="title" label="Title" placeholder="Your article title" required/>
 
+                            <x-form-textinput name="slug" label="Slug" placeholder="Your article slug"/>
+
                             <x-form-textarea name="content" label="Content" placeholder="Your article content" rows="8" required/>
 
                             <x-form-select name="author_id" label="Author" :options="$authors" placeholder="Choose an author" required/>
