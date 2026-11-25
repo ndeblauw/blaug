@@ -18,9 +18,9 @@
             <p class="font-mono text-[10px] uppercase tracking-[0.24em] text-[#d9ff3f]">Sections</p>
 
             <ul class="mt-5 space-y-3 text-sm">
-                <li><a href="{{ route('articles.index') }}" class="text-blue-100/80 transition hover:text-white">Articles</a></li>
-                <li><a href="{{ route('authors.index') }}" class="text-blue-100/80 transition hover:text-white">Authors</a></li>
-                <li><a href="{{ route('categories.index') }}" class="text-blue-100/80 transition hover:text-white">Categories</a></li>
+                @foreach($menu as $label => $url)
+                    <li><a href="{{ $url }}" class="text-blue-100/80 transition hover:text-white">{{ $label }}</a></li>
+                @endforeach
             </ul>
         </div>
 

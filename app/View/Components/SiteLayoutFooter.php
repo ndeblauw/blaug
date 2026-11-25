@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class SiteLayoutFooter extends Component
 {
+    public array $menu = [];
+
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $this->menu = config('blaug.menu');
     }
 
     /**

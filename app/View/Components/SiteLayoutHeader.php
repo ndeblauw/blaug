@@ -15,11 +15,7 @@ class SiteLayoutHeader extends Component
      */
     public function __construct()
     {
-        $this->menu = [
-            'articles' => route('articles.index'),
-            'authors' => route('authors.index'),
-            'categories' => route('categories.index'),
-        ];
+        $this->menu = config('blaug.menu');
     }
 
     /**
