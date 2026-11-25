@@ -7,6 +7,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Userzone\DashboardController;
 use App\Http\Controllers\Userzone\ProfileController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +40,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Admin user routes -------------------------------------------------------------------------
-    Route::prefix('user')->name('userzone.')->middleware(\App\Http\Middleware\IsAdmin::class)->group(function () {
+    Route::prefix('user')->name('userzone.')->middleware(IsAdmin::class)->group(function () {
         Route::resource('categories', App\Http\Controllers\Userzone\CategoryController::class)->except('show');
     });
 

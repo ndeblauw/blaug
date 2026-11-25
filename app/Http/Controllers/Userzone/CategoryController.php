@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Userzone;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -49,7 +48,6 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($id);
 
-
         $category->update([
             'name' => $request->name,
         ]);
@@ -65,6 +63,4 @@ class CategoryController extends Controller
 
         return redirect()->route('userzone.categories.index');
     }
-
-
 }

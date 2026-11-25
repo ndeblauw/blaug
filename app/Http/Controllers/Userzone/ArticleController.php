@@ -13,7 +13,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        if(auth()->user()->is_admin) {
+        if (auth()->user()->is_admin) {
             $articles = Article::query()
                 ->with(['author', 'categories'])
                 ->orderByDesc('publish_date')
@@ -50,11 +50,11 @@ class ArticleController extends Controller
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:8192'],
         ]);
 
-        $article = Article::create(Arr::except($validated, ['categories','image']));
+        $article = Article::create(Arr::except($validated, ['categories', 'image']));
 
         $article->categories()->sync($validated['categories'] ?? []);
 
-        if($request->has('image')) {
+        if ($request->has('image')) {
             $article->addMediaFromRequest('image')->toMediaCollection('headers');
         }
 
@@ -91,11 +91,11 @@ class ArticleController extends Controller
 
         abort_unless($article->canManage(auth()->user()), 403);
 
-        $article->update(Arr::except($validated, ['categories','image']));
+        $article->update(Arr::except($validated, ['categories', 'image']));
 
         $article->categories()->sync($validated['categories'] ?? []);
 
-        if($request->has('image')) {
+        if ($request->has('image')) {
             $article->addMediaFromRequest('image')->toMediaCollection('headers');
         }
 
@@ -143,5 +143,4 @@ class ArticleController extends Controller
             ])
             ->all();
     }
-
 }
