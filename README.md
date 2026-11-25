@@ -1,88 +1,97 @@
-<h1 align="center">Educational Starter Pack<br><sub>for</sub></h1>
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Blaug
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Blaug is a small blog application built with Laravel as the demo project for a web development basics course. It has public pages for articles, authors, and categories, and a login-protected user zone where authors manage their own articles and comments, while admins also manage categories and moderate every comment. Comments are approved by moderation, and article authors get a queued email notification when a new comment awaits review.
+
+The project intentionally keeps things simple: straightforward foreign keys, small controllers, Blade views, and no complex architecture.
+
+## Requirements
+
+- PHP 8.5
+- Laravel 13
+
+Packages that are not part of a standard Laravel install:
+- `spatie/laravel-medialibrary` for article header images and user avatars
+
+The frontend uses Tailwind CSS 4, Alpine.js, and Vite.
+
+## Install on local development
+Instructions below assume a setup like with Herd, where the site is available at directoryname.test. If you use different server, find it on localhost.
+
+1. Clone the repository into your webserver directory, using `blaug` as the folder name so the site becomes available at `http://blaug.test`:
+
+In Herd, for example
+   ```bash
+   cd ~/Herd
+   git clone <repository-url> blaug
+   cd blaug
+   ```
+
+2. Install the PHP dependencies:
+
+   ```bash
+   composer install
+   ```
+
+3. Create the environment file and generate the application key:
+
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. Create the SQLite database file (skip this if you configured another database in `.env`):
+
+   ```bash
+   touch database/database.sqlite
+   ```
+
+5. Run the migrations and seed the database. The seeder creates an admin, a test user, 75 authors, 100 articles, 200 comments, and attaches the demo images from `storage/seedings`:
+
+   ```bash
+   php artisan migrate --seed
+   ```
+
+6. Create the symbolic link so uploaded and seeded media is publicly available:
+
+   ```bash
+   php artisan storage:link
+   ```
+
+7. Install the frontend dependencies and build the assets:
+
+   ```bash
+   npm install
+   npm run build
+   ```
+
+8. Open `http://blaug.test` in your browser. Herd serves the project automatically, so no `php artisan serve` is needed.
+
+The seeded accounts both use `password` as their password:
+
+- Admin: `nico@deblauwe.be`
+- Regular user: `test@example.com`
 
 
----
-
-## About this Starter Pack
-
-This is a starter pack for **Laravel tailored for educational purposes**.
-
-It is aimed at helping students and beginners to quickly set up a Laravel development environment that allows for 
-learning the basics without the need to configure everything from scratch.
-
-### Changes from the original Laravel repository
-It provides a pre-configured environment with some opinionated settings and packages for the educational context. 
-Initial customisation was done based on Laravel version 12.x. (12.37.0 on November 9th, 2025).
-Updated to Laravel 13.x (13.42 on November 11th, 2026), running on PHP 8.5, including now also Laravel Boost.
-
-- Added **barryvdh/laravel-debugbar** for debug info in the browser
-- Altered **.env.example** for local development (SQLite database, debug mode on, cache and session set to file)
-- Added **roave/security-advisories** to prevent installation of packages with known security issues
-- Added **laravel/boost** for AI assisted code generation, including skills for Claude Code and Codex
-- Used **laravel/breeze** for authentication scaffolding with Blade templates (but moved all of the component views to a `components.breeze` subfolder for better organization; the Breeze package itself is no longer required)
-- Front-end assets are built with **Vite 8** and **Tailwind CSS 4**, with a fallback to **CDN includes of Tailwind CSS and Alpine JS** when no build is present
-- Replaced PHPUnit by **Pest PHP** for testing, kept basic example tests
-- Some other small tweaks in configuration files, routes, controller, and view organisation to better reflect the educational purpose (rigid structure)
-
-No front-end build is needed to get started. When there is no Vite build in `public/build`, the application falls back to CDN-hosted Tailwind CSS and Alpine JS. Running `npm run build` (or `npm run dev`) switches it to the compiled assets.
-
-Everything that follows below (and the shields in the header) are part of the original Laravel README.md file.
-
----
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### During development
+We are using the Tailwind CSS CDN. If you switch to locally served frontend assets.
+Run the Vite dev server so frontend changes are picked up:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+npm run dev
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Or start the server, queue listener, log viewer, and Vite together:
 
-## Contributing
+```bash
+composer run dev
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+New comments trigger a queued notification to the article author. With the default `log` mail driver the email is written to `storage/logs/laravel.log`, and the queue listener started by `composer run dev` processes the job.
 
-## Code of Conduct
+## Testing
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+The test suite uses Pest and an in-memory SQLite database:
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan test --compact
+```
