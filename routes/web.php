@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
  * Public Website routes
  */
 Route::get('/', WelcomeController::class)->name('welcome');
-Route::resource('articles', ArticleController::class)->only(['index', 'show']);
+Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('articles/{id:slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::resource('authors', AuthorController::class)->only(['index', 'show']);
 Route::resource('categories', CategoryController::class)->only(['index', 'show']);
 

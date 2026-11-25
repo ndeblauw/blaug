@@ -43,7 +43,7 @@
     @if($latestArticle)
         <section class="mx-auto mt-14 max-w-[1440px] px-6 lg:mt-20 lg:px-12">
             <div class="grid gap-12 border-t-2 border-blue-950 pt-10 lg:grid-cols-12 lg:gap-16">
-                <a href="{{ route('articles.show', $latestArticle['id']) }}" class="group relative block lg:col-span-7">
+                <a href="{{ route('articles.show', $latestArticle['slug']) }}" class="group relative block lg:col-span-7">
                     <div class="absolute -left-3 -top-3 h-full w-full bg-stripes-blue" aria-hidden="true"></div>
 
                     <div class="relative border-2 border-blue-950 bg-blue-950">
@@ -72,7 +72,7 @@
                         </div>
 
                         <h2 class="mt-5 text-balance text-4xl font-black uppercase leading-[0.95] tracking-[-0.035em] text-blue-950 sm:text-5xl">
-                            <a href="{{ route('articles.show', $latestArticle['id']) }}" class="transition hover:text-blue-600">
+                            <a href="{{ route('articles.show', $latestArticle['slug']) }}" class="transition hover:text-blue-600">
                                 {{ $latestArticle['title'] }}
                             </a>
                         </h2>
@@ -89,7 +89,7 @@
                         </p>
                     </div>
 
-                    <a href="{{ route('articles.show', $latestArticle['id']) }}" class="group mt-10 inline-flex w-fit items-center gap-4 border-b-2 border-blue-950 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-blue-950 transition hover:border-blue-600 hover:text-blue-600">
+                    <a href="{{ route('articles.show', $latestArticle['slug']) }}" class="group mt-10 inline-flex w-fit items-center gap-4 border-b-2 border-blue-950 pb-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-blue-950 transition hover:border-blue-600 hover:text-blue-600">
                         Read the story
                         <span class="transition group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
                     </a>
@@ -117,7 +117,7 @@
             <div class="mt-12 grid gap-x-8 gap-y-14 sm:grid-cols-2 xl:grid-cols-4">
                 @foreach($moreRecentArticles as $article)
                     <article class="group">
-                        <a href="{{ route('articles.show', $article['id']) }}" class="relative block">
+                        <a href="{{ route('articles.show', $article['slug']) }}" class="relative block">
                             <div class="absolute -left-2 -top-2 h-full w-full bg-stripes-blue" aria-hidden="true"></div>
 
                             <div class="relative border-2 border-blue-950">
@@ -142,7 +142,7 @@
                             </div>
 
                             <h3 class="mt-3 text-xl font-extrabold uppercase leading-tight tracking-[-0.02em] text-blue-950">
-                                <a href="{{ route('articles.show', $article['id']) }}" class="transition group-hover:text-blue-600">
+                                <a href="{{ route('articles.show', $article['slug']) }}" class="transition group-hover:text-blue-600">
                                     {{ $article['title'] }}
                                 </a>
                             </h3>
@@ -263,7 +263,7 @@
             <div class="mt-12 grid gap-10 border-t border-white/20 pt-10 md:grid-cols-3">
                 @forelse($popularArticles as $article)
                     <article class="group">
-                        <a href="{{ route('articles.show', $article['id']) }}" class="relative block">
+                        <a href="{{ route('articles.show', $article['slug']) }}" class="relative block">
                             <img
                                 src="{{ $article['image'] }}"
                                 alt="{{ $article['title'] }}"
@@ -277,7 +277,7 @@
                         </a>
 
                         <h3 class="mt-6 text-2xl font-extrabold uppercase leading-tight tracking-[-0.02em]">
-                            <a href="{{ route('articles.show', $article['id']) }}" class="transition group-hover:text-[#d9ff3f]">
+                            <a href="{{ route('articles.show', $article['slug']) }}" class="transition group-hover:text-[#d9ff3f]">
                                 {{ $article['title'] }}
                             </a>
                         </h3>

@@ -17,11 +17,12 @@ class ArticleController extends Controller
         return view('articles.index', compact('articles'));
     }
 
-    public function show(int $id)
+    public function show(string $slug)
     {
         $article = Article::query()
             ->with('author.media')
-            ->findOrFail($id);
+            ->where('slug', $slug)
+            ->firstOrFail();
 
         $relatedArticles = Article::query()
             ->with(['author', 'media', 'categories'])

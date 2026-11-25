@@ -82,6 +82,7 @@ class ArticleFactory extends Factory
     {
         return [
             'title' => $this->faker->randomElement(self::TITLES),
+            'slug' => $this->faker->slug,
             'content' => collect($this->faker->randomElements(self::PARAGRAPHS, $this->faker->numberBetween(4, 6)))
                 ->implode("\n\n"),
             'author_id' => $this->faker->numberBetween(1, 5),

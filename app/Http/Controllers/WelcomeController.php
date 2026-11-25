@@ -23,6 +23,7 @@ class WelcomeController extends Controller
                 ->get()
                 ->map(fn (Article $article) => [
                     'id' => $article->id,
+                    'slug' => $article->slug,
                     'title' => $article->title,
                     'author_name' => $article->author->name,
                     'comments_count' => $article->comments_count,
@@ -39,6 +40,7 @@ class WelcomeController extends Controller
                 ->get()
                 ->map(fn (Article $article) => [
                     'id' => $article->id,
+                    'slug' => $article->slug,
                     'title' => $article->title,
                     'author_name' => $article->author->name,
                     'author_id' => $article->author_id,

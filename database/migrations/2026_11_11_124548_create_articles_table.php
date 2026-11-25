@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
+            $table->string('slug');
             $table->text('content');
             $table->foreignId('author_id');
             $table->dateTime('publish_date');

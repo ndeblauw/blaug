@@ -25,6 +25,22 @@ test('the welcome page highlights the newest article', function () {
         ->assertSee('The newest dispatch');
 });
 
+test('the welcome page links to articles using their slug', function () {
+    $author = User::factory()->nonAdmin()->create();
+
+    $article = Article::factory()->create([
+        'author_id' => $author->id,
+        'title' => 'A slugged dispatch',
+        'slug' => 'a-slugged-dispatch',
+        'publish_date' => now()->subHour(),
+    ]);
+
+    $this->get(route('welcome'))
+        ->assertOk()
+        ->assertSee(route('articles.show', $article->slug))
+        ->assertDontSee(route('articles.show', $article->id));
+});
+
 test('the welcome page lists the next four recent articles', function () {
     $author = User::factory()->nonAdmin()->create();
 
