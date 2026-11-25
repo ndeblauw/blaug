@@ -4,7 +4,7 @@
     <div class="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-x-8 gap-y-4 px-6 py-5 lg:px-12">
         <a href="{{ route('welcome') }}" class="group relative flex items-center gap-3">
             <span class="flex h-11 w-11 items-center justify-center bg-blue-950 text-xl font-black text-white transition group-hover:bg-blue-600">
-                B
+                HS
             </span>
 
             <span class="text-2xl font-black uppercase leading-none tracking-[-0.05em] text-blue-950">
