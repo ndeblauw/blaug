@@ -19,7 +19,7 @@
 
                             <x-form-textinput name="slug" label="Slug" placeholder="Your article slug"/>
 
-                            <x-form-textarea name="content" label="Content" placeholder="Your article content" rows="8" required/>
+                            <x-form-textarea name="content" label="Content" placeholder="Your article content" rows="8" rte/>
 
                             <x-form-select name="author_id" label="Author" :options="$authors" placeholder="Choose an author" required/>
 

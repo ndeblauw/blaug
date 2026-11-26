@@ -84,7 +84,8 @@ class ArticleFactory extends Factory
             'title' => $this->faker->randomElement(self::TITLES),
             'slug' => $this->faker->slug,
             'content' => collect($this->faker->randomElements(self::PARAGRAPHS, $this->faker->numberBetween(4, 6)))
-                ->implode("\n\n"),
+                ->map(fn (string $paragraph): string => "<p>{$paragraph}</p>")
+                ->implode("\n"),
             'author_id' => $this->faker->numberBetween(1, 5),
             'publish_date' => $this->faker->dateTimeBetween('-4 weeks', 'now'),
         ];
