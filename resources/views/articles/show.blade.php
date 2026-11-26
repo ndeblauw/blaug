@@ -98,16 +98,13 @@
                 <div class="mt-8 h-24 bg-stripes-lime" aria-hidden="true"></div>
             </aside>
 
-            <article class="lg:col-span-9">
-                <div class="max-w-3xl text-[17px] leading-9 text-blue-950/80">
-                    @foreach(preg_split('/\R+/', trim($article->content)) as $paragraph)
-                        @continue(trim($paragraph) === '')
+            <style>
+                .contentText a { font-weight: bold; text-decoration: underline;}
+            </style>
 
-                        <p @class([
-                            'mt-7 first:mt-0',
-                            'first-letter:float-left first-letter:mr-3 first-letter:text-6xl first-letter:font-black first-letter:leading-[0.8] first-letter:text-blue-950' => $loop->first,
-                        ])>{{ $paragraph }}</p>
-                    @endforeach
+            <article class="lg:col-span-9">
+                <div class="max-w-3xl text-[17px] leading-9 text-blue-950/80 contentText">
+                    {!! $article->content !!}
                 </div>
             </article>
         </div>
