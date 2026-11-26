@@ -16,7 +16,7 @@
                 <h1 class="mt-5 text-5xl font-black uppercase leading-[0.88] tracking-[-0.05em] text-blue-950 sm:text-7xl lg:text-[6.5rem]">
                     Read<br>
                     the <span class="relative inline-block">
-                        news
+                        Updates
                         <span class="absolute -bottom-1 left-0 h-3 w-full bg-[#d9ff3f]" aria-hidden="true"></span>
                     </span>
                 </h1>
