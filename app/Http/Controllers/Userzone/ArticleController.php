@@ -15,6 +15,7 @@ class ArticleController extends Controller
     {
         if (auth()->user()->is_admin) {
             $articles = Article::query()
+                ->withTrashed()
                 ->with(['author', 'categories'])
                 ->orderByDesc('publish_date')
                 ->get();
@@ -110,6 +111,17 @@ class ArticleController extends Controller
 
         $article->categories()->detach();
         $article->delete();
+
+        return redirect()->route('userzone.articles.index');
+    }
+
+    public function restore(int $id)
+    {
+        $article = Article::withTrashed()->findOrFail($id);
+
+        abort_unless($article->canManage(auth()->user()), 403);
+
+        $article->restore();
 
         return redirect()->route('userzone.articles.index');
     }

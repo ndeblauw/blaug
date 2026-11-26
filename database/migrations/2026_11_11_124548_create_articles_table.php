@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('author_id');
             $table->dateTime('publish_date');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

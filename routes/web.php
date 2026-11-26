@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     // Normal user routes here ------------------------------------------------------------------
     Route::prefix('user')->name('userzone.')->group(function () {
         Route::resource('articles', App\Http\Controllers\Userzone\ArticleController::class)->except('show');
+        Route::patch('articles/{article}/restore', [App\Http\Controllers\Userzone\ArticleController::class, 'restore'])->name('articles.restore');
         Route::resource('comments', App\Http\Controllers\Userzone\CommentController::class)->except(['create', 'store']);
     });
 
