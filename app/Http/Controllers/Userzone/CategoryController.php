@@ -30,6 +30,8 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
 
+        session()->flash('success', 'Category '. $request->name .' created successfully');
+
         return redirect()->route('userzone.categories.index');
     }
 

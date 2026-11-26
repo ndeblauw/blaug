@@ -7,6 +7,13 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            @session('success')
+            <div class="my-4 bg-green-100 border border-green-500 text-green-500 p-2">
+                {{ session()->get('success') }}
+            </div>
+            @endsession
+
             <div class="bg-white overflow-hidden shadow-xs sm:rounded-lg">
                 <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
                     <h3 class="font-semibold text-gray-900">All categories</h3>
