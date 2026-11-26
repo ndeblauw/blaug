@@ -29,7 +29,9 @@
                     <tbody class="divide-y divide-gray-100">
                         @forelse($articles as $article)
                             <tr>
-                                <td class="px-6 py-4">{{ $article->title }}</td>
+                                <td class="px-6 py-4">
+                                    {{ $article->title }}
+                                </td>
                                 <td class="px-6 py-4">{{ $article->author->name }}</td>
                                 <td class="px-6 py-4">{{ $article->publish_date->format('M j, Y') }}</td>
                                 <td class="px-6 py-4">
@@ -37,15 +39,26 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-end gap-4 text-xs font-semibold uppercase tracking-widest">
-                                        <a href="{{ route('articles.show', $article) }}" class="text-gray-600 hover:text-gray-800">View</a>
+                                        @if($article->trashed())
+                                            <form action="{{ route('userzone.articles.restore', $article->id) }}" method="post">
+                                                @method('patch')
+                                                @csrf
+                                                <button type="submit" class="text-green-600 hover:text-green-500">Restore</button>
+                                            </form>
 
-                                        <a href="{{ route('userzone.articles.edit', $article->id) }}" class="text-gray-800 hover:text-gray-600">Edit</a>
+                                        @else
+                                            <a href="{{ route('articles.show', $article) }}" class="text-gray-600 hover:text-gray-800">View</a>
 
-                                        <form action="{{ route('userzone.articles.destroy', $article->id) }}" method="post">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="text-red-600 hover:text-red-500">Delete</button>
-                                        </form>
+                                            <a href="{{ route('userzone.articles.edit', $article->id) }}" class="text-gray-800 hover:text-gray-600">Edit</a>
+
+                                            <form action="{{ route('userzone.articles.destroy', $article->id) }}" method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="text-red-600 hover:text-red-500">Delete</button>
+                                            </form>
+                                        @endif
+
+
                                     </div>
                                 </td>
                             </tr>
